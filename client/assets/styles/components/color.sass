@@ -1,0 +1,13 @@
+.color
+  display: flex
+  flex-direction: column
+  font-size: rem(36px)
+
+  @include respond($breakpoint-sm)
+    flex-direction: row
+    align-items: center
+    font-size: rem(48px)
+    padding: 0
+
+.color__name
+  transition: color $animation-duration $animation-timing
