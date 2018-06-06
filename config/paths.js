@@ -5,7 +5,7 @@ module.exports = {
   client: resolve(__dirname, '../client'),
   server: resolve(__dirname, '../server'),
   app: resolve(__dirname, '../app'),
-  static: resolve(__dirname, '../client/static'),
+  static: resolve(__dirname, '../static'),
   icons: {
     src: resolve(__dirname, '../client/assets/icons/src'),
     dist: resolve(__dirname, '../client/assets/icons/dist')
