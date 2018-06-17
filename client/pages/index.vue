@@ -8,10 +8,8 @@
     .input-prepend #
     input.input(
       type='text',
-      placeholder='35495e',
-      v-model='color',
-      @input='fetch',
-      maxlength='6'
+      placeholder='6c5b7b',
+      v-model='color'
     )
 
   .color__name(@click='select($event)') {{ received.name }}
@@ -28,11 +26,11 @@ export default {
 
   data () {
     return {
-      color: '35495e',
+      color: '6c5b7b',
       received: {
-        color: '#35495e',
-        name: 'Dark Denim',
-        text: '#fff'
+        color: '#6c5b7b',
+        name: 'Princely Violet',
+        text: '#c06c84'
       }
     }
   },
@@ -51,6 +49,16 @@ export default {
     }
   },
 
+  watch: {
+    color (value) {
+      value = value.replace(/([^abcdef0-9])|#/ig, '')
+
+      this.color = value.slice(0, 6)
+
+      this.fetch()
+    }
+  },
+
   methods: {
     async fetch () {
       this.color = this.color.toLowerCase()
@@ -60,12 +68,16 @@ export default {
 
         this.received.name = data.name
         this.received.color = data.hex
-        this.received.text = data.luminance > 85 ? '#000' : '#fff'
+        this.received.text = data.luminance > 65 ? '#000' : '#c06c84'
       }
     },
 
     test (color) {
-      return /[abcdefABCDEF0-9]{6}/.test(color)
+      const receivedColor = this.received.color.replace('#', '')
+      const test = /[abcdefABCDEF0-9]{6}/.test(color)
+      const isSyntaxCorrect = test && color.length === 6
+
+      return isSyntaxCorrect && color !== receivedColor
     },
 
     select (event) {
